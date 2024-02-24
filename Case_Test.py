@@ -37,7 +37,6 @@ def status_now(dict_queue,total_time):
         clients = []
         filled = []
         for j in range(len(dict_queue[str(i)][3])):
-
             if len(dict_queue[str(i)][3][j])>0:
                 time_end = dict_queue[str(i)][3][j][4] + dict_queue[str(i)][3][j][3]
 
@@ -48,14 +47,14 @@ def status_now(dict_queue,total_time):
                         hours = "0" + hours
                     if len(minuts)<2:
                         minuts = "0" + minuts
-                    '''print(f'{ru.IN} {hours}:{minuts} {ru.CLIENT} '
-                          f'{dict_queue[str(i)][3][j][0]} {dict_queue[str(i)][3][j][2]} {dict_queue[str(i)][3][j][1]} {ru.FILL_LUCK}')'''
-                    print("fjkfkfkfkfkfk")
+                    print(f'{ru.IN} {hours}:{minuts} {ru.CLIENT} '
+                          f'{dict_queue[str(i)][3][j][0]} {dict_queue[str(i)][3][j][2]} {dict_queue[str(i)][3][j][1]} {ru.FILL_LUCK}')
                 else:
                     clients.append(dict_queue[str(i)][3][j])
                     filled.append(dict_queue[str(i)][2][j])
         dict_queue[str(i)][3] = clients
         dict_queue[str(i)][2] = filled
+    return dict_queue
 
 
 
@@ -76,9 +75,9 @@ with open('input.txt', encoding='utf8') as f_in:
         case = random.randint(-1, 1)
         if filling_time + case > 0:
             filling_time += case
-            clients = [time, volume, brand, filling_time, time_in_minuts]
+        clients = [time, volume, brand, filling_time, time_in_minuts]
 
-        status_now(dict_queue, total_time)
+        dict_queue = status_now(dict_queue, total_time)
 
         min_que = float('inf')
         for i in range(1, fill_amount + 1):
