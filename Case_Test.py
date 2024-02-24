@@ -58,9 +58,6 @@ def status_now(dict_queue,total_time):
 
 
 
-
-
-
 n = len(dict_queue)
 with open('input.txt', encoding='utf8') as f_in:
     for new_client in f_in:
