@@ -3,17 +3,17 @@ import random
 import math
 
 
-def status_now(dict_queue, total_time):
+def status_now(diveces, all_time):
     for i in range(1, n + 1):
         #customers = []
         #filled = []
         x=0
-        len_array = len(dict_queue[str(i)][3])
+        len_array = len(diveces[str(i)][3])
         while x < len_array:
-            if len(dict_queue[str(i)][3][x]) > 0:
-                time_end = dict_queue[str(i)][3][x][4] + dict_queue[str(i)][3][x][3]
+            if len(diveces[str(i)][3][x]) > 0:
+                time_end = diveces[str(i)][3][x][4] + diveces[str(i)][3][x][3]
 
-                if time_end < total_time:
+                if time_end < all_time:
                     hours = str(time_end // 60)
                     minutes = str(time_end - int(hours) * 60)
 
@@ -22,18 +22,18 @@ def status_now(dict_queue, total_time):
                     if len(minutes) < 2:
                         minutes = "0" + minutes
 
-                    print(f'{ru.IN} {hours}:{minutes} {ru.CLIENT} {dict_queue[str(i)][3][x][0]} '
-                          f'{dict_queue[str(i)][3][x][2]} {dict_queue[str(i)][3][x][1]} {ru.FILL_LUCK}')
-                    dict_queue[str(i)][3].pop(x)
-                    dict_queue[str(i)][2].pop(x)
+                    print(f'{ru.IN} {hours}:{minutes} {ru.CLIENT} {diveces[str(i)][3][x][0]} '
+                          f'{diveces[str(i)][3][x][2]} {diveces[str(i)][3][x][1]} {ru.FILL_LUCK}')
+                    diveces[str(i)][3].pop(x)
+                    diveces[str(i)][2].pop(x)
                     len_array-=1
-                    x=-1
+                    x =- 1
                     for m in range(1, n + 1):
-                        print(f'{ru.AUTOMAT}{m} {ru.MAX_QUEUE} {dict_queue[str(m)][0]} {ru.GASOLINE_BRANDS}',
-                              ' '.join(dict_queue[str(m)][1]), '->', *dict_queue[str(m)][2], sep='')
-            x+=1
+                        print(f'{ru.AUTOMAT}{m} {ru.MAX_QUEUE} {diveces[str(m)][0]} {ru.GASOLINE_BRANDS}',
+                              ' '.join(diveces[str(m)][1]), '->', *diveces[str(m)][2], sep='')
+            x += 1
 
-    return dict_queue
+    return diveces
 
 
 if __name__ == '__main__':
