@@ -5,10 +5,11 @@ import math
 
 def status_now(dict_queue, total_time):
     for i in range(1, n + 1):
-        customers = []
-        filled = []
-
-        for x in range(len(dict_queue[str(i)][3])):
+        #customers = []
+        #filled = []
+        x=0
+        len_array = len(dict_queue[str(i)][3])
+        while x < len_array:
             if len(dict_queue[str(i)][3][x]) > 0:
                 time_end = dict_queue[str(i)][3][x][4] + dict_queue[str(i)][3][x][3]
 
@@ -23,15 +24,14 @@ def status_now(dict_queue, total_time):
 
                     print(f'{ru.IN} {hours}:{minutes} {ru.CLIENT} {dict_queue[str(i)][3][x][0]} '
                           f'{dict_queue[str(i)][3][x][2]} {dict_queue[str(i)][3][x][1]} {ru.FILL_LUCK}')
-
+                    dict_queue[str(i)][3].pop(x)
+                    dict_queue[str(i)][2].pop(x)
+                    len_array-=1
+                    x=-1
                     for m in range(1, n + 1):
                         print(f'{ru.AUTOMAT}{m} {ru.MAX_QUEUE} {dict_queue[str(m)][0]} {ru.GASOLINE_BRANDS}',
                               ' '.join(dict_queue[str(m)][1]), '->', *dict_queue[str(m)][2], sep='')
-                else:
-                    customers.append(dict_queue[str(i)][3][x])
-                    filled.append(dict_queue[str(i)][2][x])
-        dict_queue[str(i)][3] = customers
-        dict_queue[str(i)][2] = filled
+            x+=1
 
     return dict_queue
 
@@ -46,7 +46,7 @@ if __name__ == '__main__':
     total_time = 0
     revenue = 0
 
-    with open('automats.txt', 'r', encoding='utf8') as f_auto:
+    with open('automats.txt', 'r') as f_auto:
         dict_queue = {}
 
         for ptr in f_auto:
