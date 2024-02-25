@@ -26,7 +26,7 @@ def status_now(diveces, all_time):
                           f'{diveces[str(i)][3][x][2]} {diveces[str(i)][3][x][1]} {ru.FILL_LUCK}')
                     diveces[str(i)][3].pop(x)
                     diveces[str(i)][2].pop(x)
-                    len_array-=1
+                    len_array -= 1
                     x -= 1
                     for m in range(1, n + 1):
                         print(f'{ru.AUTOMAT}{m} {ru.MAX_QUEUE} {diveces[str(m)][0]} {ru.GASOLINE_BRANDS}',
