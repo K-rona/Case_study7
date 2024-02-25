@@ -5,9 +5,7 @@ import math
 
 def status_now(diveces, all_time):
     for i in range(1, n + 1):
-        #customers = []
-        #filled = []
-        x=0
+        x = 0
         len_array = len(diveces[str(i)][3])
         while x < len_array:
             if len(diveces[str(i)][3][x]) > 0:
