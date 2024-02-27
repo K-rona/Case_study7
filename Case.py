@@ -88,16 +88,14 @@ if __name__ == '__main__':
                 print(f'{ru.IN} {time} {ru.NEW_CLIENT}: {new_client[:-1]} {filling_time} {ru.FILL_FAIL}')
                 lost_clients += 1
             else:
-                for j in range(1, n + 1):
-                    if brand in dict_queue[str(j)][1]:
-                        if len(dict_queue[str(j)][2]) == min_que \
-                                and len(dict_queue[str(j)][2]) < int(dict_queue[str(j)][0]):
-                            fill_number = j
-                            dict_queue[str(j)][2] += ['*']
-                            dict_queue[str(j)][3] += [clients]
-                            print(f'{ru.IN} {time} {ru.NEW_CLIENT}: {new_client[:-1]}'
-                                  f' {filling_time} {ru.GET_IN_LINE} {fill_number}')
-                            break
+                for key, values in dict_queue.items():
+                    if brand in values[1] and len(values[2]) == min_que and len(values[2]) < int(values[0]):
+                        fill_number = key
+                dict_queue[fill_number][2] += ['*']
+                dict_queue[fill_number][3] += [clients]
+
+                print(f'{ru.IN} {time} {ru.NEW_CLIENT}: {new_client[:-1]}'
+                    f' {filling_time} {ru.GET_IN_LINE} {fill_number}')
 
             for k in range(1, n + 1):
                 print(f'{ru.AUTOMAT}{k} {ru.MAX_QUEUE} {dict_queue[str(k)][0]} {ru.GASOLINE_BRANDS}',
