@@ -97,6 +97,7 @@ if __name__ == '__main__':
             if min_que == float('inf'):
                 print(f'{ru.IN} {time} {ru.NEW_CLIENT}: {new_client[:-1]} {filling_time} {ru.FILL_FAIL}')
                 lost_clients += 1
+                fuel_amount[brand] -= volume
             else:
                 for key, values in dict_queue.items():
                     if brand in values[1] and len(values[2]) == min_que and len(values[2]) < int(values[0]):
