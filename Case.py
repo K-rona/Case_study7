@@ -4,9 +4,17 @@ import math
 
 
 def status_now(diveces, all_time):
+    """
+    Get status of gas station
+    :param diveces: old dictionary with queue data
+    :param all_time: passed time
+    :return: updated queue dictionary
+    """
+
     for i in range(1, n + 1):
         x = 0
         len_array = len(diveces[str(i)][3])
+
         while x < len_array:
             if len(diveces[str(i)][3][x]) > 0:
                 time_end = diveces[str(i)][3][x][4] + diveces[str(i)][3][x][3]
@@ -16,16 +24,18 @@ def status_now(diveces, all_time):
                     minutes = str(time_end - int(hours) * 60)
 
                     if len(hours) < 2:
-                        hours = "0" + hours
+                        hours = '0' + hours
                     if len(minutes) < 2:
-                        minutes = "0" + minutes
+                        minutes = '0' + minutes
 
                     print(f'{ru.IN} {hours}:{minutes} {ru.CLIENT} {diveces[str(i)][3][x][0]} '
                           f'{diveces[str(i)][3][x][2]} {diveces[str(i)][3][x][1]} {ru.FILL_LUCK}')
+
                     diveces[str(i)][3].pop(x)
                     diveces[str(i)][2].pop(x)
                     len_array -= 1
                     x -= 1
+
                     for m in range(1, n + 1):
                         print(f'{ru.AUTOMAT}{m} {ru.MAX_QUEUE} {diveces[str(m)][0]} {ru.GASOLINE_BRANDS}',
                               ' '.join(diveces[str(m)][1]), '->', *diveces[str(m)][2], sep='')
@@ -95,7 +105,7 @@ if __name__ == '__main__':
                 dict_queue[fill_number][3] += [clients]
 
                 print(f'{ru.IN} {time} {ru.NEW_CLIENT}: {new_client[:-1]}'
-                    f' {filling_time} {ru.GET_IN_LINE} {fill_number}')
+                      f' {filling_time} {ru.GET_IN_LINE} {fill_number}')
 
             for k in range(1, n + 1):
                 print(f'{ru.AUTOMAT}{k} {ru.MAX_QUEUE} {dict_queue[str(k)][0]} {ru.GASOLINE_BRANDS}',
