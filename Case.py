@@ -54,7 +54,7 @@ if __name__ == '__main__':
     total_time = 0
     revenue = 0
 
-    with open('automats.txt', 'r') as f_auto:
+    with open('automats.txt', 'r', encoding='utf8') as f_auto:
         dict_queue = {}
 
         for ptr in f_auto:
